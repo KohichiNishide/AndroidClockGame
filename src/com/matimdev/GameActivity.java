@@ -14,7 +14,10 @@ import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.ui.activity.BaseGameActivity;
 
+import android.content.Context;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.widget.RelativeLayout;
 
 import com.matimdev.manager.ResourcesManager;
 import com.matimdev.manager.SceneManager;
@@ -83,4 +86,14 @@ public class GameActivity extends BaseGameActivity
 			System.exit(0);	
 		}	
 	}	
+     
+    public void showAnalogClock() {
+    	runOnUiThread(new Runnable() {
+            public void run() {
+            	LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            	RelativeLayout analogClockView = (RelativeLayout)inflater.inflate(R.layout.analog_clock, null);
+                setContentView(analogClockView);
+            }
+        });
+    }
 }

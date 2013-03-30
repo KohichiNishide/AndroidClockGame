@@ -28,6 +28,8 @@ import org.andengine.util.level.simple.SimpleLevelEntityLoaderData;
 import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.xml.sax.Attributes;
 
+import android.widget.Toast;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -37,6 +39,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.matimdev.GameActivity;
 import com.matimdev.base.BaseScene;
 import com.matimdev.extras.LevelCompleteWindow;
 import com.matimdev.extras.LevelCompleteWindow.StarsCount;
@@ -64,6 +67,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN = "coin";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER = "player";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_CLOCK = "clock";
 	
 	private Player player;
 	
@@ -120,6 +124,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 			}
 			else
 			{
+				showToast("Jump!");
 				player.jump();
 			}
 		}
@@ -204,6 +209,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							if (!gameOverDisplayed)
 							{
 								displayGameOverText();
+								//showAnalogClock();
 							}
 						}
 					};
@@ -227,7 +233,10 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 						}
 					};
 					levelObject.registerEntityModifier(new LoopEntityModifier(new ScaleModifier(1, 1, 1.3f)));
-				}	
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_CLOCK)) {
+					levelObject = new Sprite(x, y, resourcesManager.complete_stars_region, vbom);
+				}
 				else
 				{
 					throw new IllegalArgumentException();
@@ -269,7 +278,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	
 	private void createBackground()
 	{
-		setBackground(new Background(Color.BLUE));
+		setBackground(new Background(Color.WHITE));
 	}
 	
 	private void addToScore(int i)
@@ -283,6 +292,19 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		physicsWorld = new FixedStepPhysicsWorld(60, new Vector2(0, -17), false); 
 		physicsWorld.setContactListener(contactListener());
 		registerUpdateHandler(physicsWorld);
+	}
+	
+	private void showToast(final String text) { 
+	    getBaseActivity().runOnUiThread(new Runnable() {
+	    	public void run() {
+	        Toast.makeText(getBaseActivity(), text, Toast.LENGTH_SHORT).show();
+	        }
+	    });
+	}
+	
+	private void showAnalogClock() { 
+	    GameActivity activity = (GameActivity)getBaseActivity();
+	    activity.showAnalogClock();
 	}
 	
 	// ---------------------------------------------

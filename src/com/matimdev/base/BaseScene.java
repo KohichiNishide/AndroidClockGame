@@ -41,6 +41,10 @@ public abstract class BaseScene extends Scene
 		createScene();
 	}
 	
+	public Activity getBaseActivity() {
+		return activity;
+	}
+	
 	//---------------------------------------------
 	// ABSTRACTION
 	//---------------------------------------------
