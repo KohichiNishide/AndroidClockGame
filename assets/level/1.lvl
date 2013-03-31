@@ -20,4 +20,5 @@
 	<entity x="2500" y="500" type="coin"/>
 	<entity x="4500" y="150" type="levelComplete"/>
 	<entity x="60" y="90" type="player"/>
+	<entity x="500" y="90" type="enemy1"/>
 </level>

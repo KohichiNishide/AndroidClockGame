@@ -56,6 +56,7 @@ public class ResourcesManager
 	public ITextureRegion ground_region;
 	public ITextureRegion coin_region;
 	public ITiledTextureRegion player_region;
+	public ITiledTextureRegion enemy1_region;
 	public ITextureRegion dokan_region;
 	public ITextureRegion iphone_region;
 	public ITextureRegion degitalClock_region;
@@ -132,6 +133,7 @@ public class ResourcesManager
        	degitalClock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "degitalClock.png");
         coin_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "coin.png");
         player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 3, 1);
+        enemy1_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "enemy1.png", 3, 1);
         
         complete_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "levelCompleteWindow.png");
         complete_stars_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "star.png", 2, 1);

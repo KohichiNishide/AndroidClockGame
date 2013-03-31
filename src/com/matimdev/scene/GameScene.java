@@ -12,7 +12,6 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.entity.text.AutoWrap;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
@@ -47,6 +46,7 @@ import com.matimdev.extras.LevelCompleteWindow;
 import com.matimdev.extras.LevelCompleteWindow.StarsCount;
 import com.matimdev.manager.SceneManager;
 import com.matimdev.manager.SceneManager.SceneType;
+import com.matimdev.object.Enemy;
 import com.matimdev.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
@@ -69,18 +69,21 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_GROUND = "ground";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN = "coin";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER = "player";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY1 = "enemy1";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK = "degitalClock";
 	
 	private Player player;
+	private Enemy enemy1;
 	
 	private Text gameOverText;
 	private boolean gameOverDisplayed = false;
 	
 	private boolean firstTouch = false;
-	private Text countDownText;
+	private Text iphoneCountDownText;
+	private Text degitalClockCountDownText;
 	
 	@Override
 	public void createScene()
@@ -255,11 +258,11 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.iphone_region, vbom);
 					// Get current time
 					String currentTime = getCurrentTime();
-					countDownText = new Text(50, 20, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
-					levelObject.attachChild(countDownText);
+					iphoneCountDownText = new Text(50, 20, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(iphoneCountDownText);
 					iphoneTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
 					    public void onTimePassed(TimerHandler pTimerHandler) {
-					        countDownText.setText(getCurrentTime());
+					    	iphoneCountDownText.setText(getCurrentTime());
 					    }
 					});
 					levelObject.registerUpdateHandler(iphoneTimerHandler);
@@ -269,15 +272,40 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
 					// Get current time
 					String currentTime = getCurrentTime();
-					countDownText = new Text(53, 30, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
-					levelObject.attachChild(countDownText);
+					degitalClockCountDownText = new Text(53, 30, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText);
 					degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
 					    public void onTimePassed(TimerHandler pTimerHandler) {
-					        countDownText.setText(getCurrentTime());
+					    	degitalClockCountDownText.setText(getCurrentTime());
 					    }
 					});
 					levelObject.registerUpdateHandler(degitalClockTimerHandler);
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY1)) {
+					enemy1 = new Enemy(x, y, vbom, camera, physicsWorld){
+						@Override
+						public void onDie()
+						{
+						}
+						
+						@Override
+						protected void onManagedUpdate(float pSecondsElapsed) 
+						{
+							super.onManagedUpdate(pSecondsElapsed);
+
+							if (player.collidesWith(this))
+							{
+								player.setVisible(false);
+								if (!gameOverDisplayed)
+								{
+									player.die();
+									displayGameOverText();
+								}
+							}
+						}
+					};
+					levelObject = enemy1;
 				}
 				else
 				{
