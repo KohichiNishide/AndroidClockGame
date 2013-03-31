@@ -12,6 +12,7 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.text.AutoWrap;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
@@ -28,6 +29,7 @@ import org.andengine.util.level.simple.SimpleLevelEntityLoaderData;
 import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.xml.sax.Attributes;
 
+import android.text.format.Time;
 import android.widget.Toast;
 
 import com.badlogic.gdx.math.Vector2;
@@ -69,6 +71,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER = "player";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
 	
 	private Player player;
 	
@@ -76,6 +79,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private boolean gameOverDisplayed = false;
 	
 	private boolean firstTouch = false;
+	private Text countDownText;
 	
 	@Override
 	public void createScene()
@@ -125,12 +129,15 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 			}
 			else
 			{
-				showToast("Jump!");
+				//showToast("Jump!");
 				player.jump();
 			}
 		}
 		return false;
 	}
+	
+	private TimerHandler iphoneTimerHandler;
+	private TimerHandler degitalClockTimerHandler;
 	
 	private void loadLevel(int levelID)
 	{
@@ -192,7 +199,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 
 							if (player.collidesWith(this))
 							{
-								addToScore(10);
+								addToScore(1);
 								this.setVisible(false);
 								this.setIgnoreUpdate(true);
 							}
@@ -243,6 +250,20 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.dokan_region, vbom);
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("dokan");
 				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE)) {
+					levelObject = new Sprite(x, y, resourcesManager.iphone_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					countDownText = new Text(50, 20, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(countDownText);
+					iphoneTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					        countDownText.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(iphoneTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("iphone");
+				}
 				else
 				{
 					throw new IllegalArgumentException();
@@ -256,6 +277,18 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 
 		levelLoader.loadLevelFromAsset(activity.getAssets(), "level/" + levelID + ".lvl");
 	}
+	
+	private String getCurrentTime() {
+		Time time = new Time("Asia/Tokyo");
+		time.setToNow();
+		return zero(time.hour) + ":" + zero(time.minute) + ":" + zero(time.second);
+	}
+	
+	private String zero(int num)
+    {
+      String number=( num < 10) ? ("0"+num) : (""+num);
+      return number; //Add leading zero if needed
+    }
 	
 	private void createGameOverText()
 	{
@@ -276,7 +309,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		
 		scoreText = new Text(20, 420, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		scoreText.setAnchorCenter(0, 0);	
-		scoreText.setText("Score: 0");
+		scoreText.setText("Coin: 0");
 		gameHUD.attachChild(scoreText);
 		
 		camera.setHUD(gameHUD);
@@ -290,7 +323,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private void addToScore(int i)
 	{
 		score += i;
-		scoreText.setText("Score: " + score);
+		scoreText.setText("Coin: " + score);
 	}
 	
 	private void createPhysics()

@@ -35,6 +35,7 @@ public class ResourcesManager
 	public VertexBufferObjectManager vbom;
 	
 	public Font font;
+	public Font timeFont;
 	
 	//---------------------------------------------
 	// TEXTURES & TEXTURE REGIONS
@@ -56,6 +57,7 @@ public class ResourcesManager
 	public ITextureRegion coin_region;
 	public ITiledTextureRegion player_region;
 	public ITextureRegion dokan_region;
+	public ITextureRegion iphone_region;
 	
 	private BitmapTextureAtlas splashTextureAtlas;
 	private BuildableBitmapTextureAtlas menuTextureAtlas;
@@ -125,6 +127,7 @@ public class ResourcesManager
        	platform3_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform3.png");
        	ground_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "ground.png");
        	dokan_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "dokan.png");
+       	iphone_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "iphone.png");
         coin_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "coin.png");
         player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 3, 1);
         
@@ -144,7 +147,10 @@ public class ResourcesManager
 	
 	private void loadGameFonts()
 	{
-		
+		FontFactory.setAssetBasePath("font/");
+		final ITexture mainFontTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		timeFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), mainFontTexture, activity.getAssets(), "font.ttf", 17, true, Color.WHITE, 2, Color.BLACK);
+		timeFont.load();
 	}
 	
 	private void loadGameAudio()
