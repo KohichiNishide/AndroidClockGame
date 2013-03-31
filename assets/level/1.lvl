@@ -9,9 +9,11 @@
 	<entity x="2100" y="330" type="platform3"/>
 	<entity x="2320" y="330" type="platform3"/>
 	<entity x="0" y="20" type="ground"/>
+	<entity x="300" y="110" type="dokan"/>
+	<entity x="600" y="110" type="dokan"/>
 	<entity x="1400" y="270" type="coin"/>
 	<entity x="1500" y="400" type="coin"/>
 	<entity x="1600" y="400" type="coin"/>
 	<entity x="2500" y="550" type="levelComplete"/>
-	<entity x="60" y="100" type="player"/>
+	<entity x="60" y="90" type="player"/>
 </level>
