@@ -80,6 +80,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	
 	private Text gameOverText;
 	private boolean gameOverDisplayed = false;
+	private boolean gameCleard = false;
 	
 	private boolean firstTouch = false;
 	private Text iphoneCountDownText;
@@ -238,6 +239,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 
 							if (player.collidesWith(this))
 							{
+								gameCleard = true;
 								levelCompleteWindow.display(StarsCount.TWO, GameScene.this, camera);
 								this.setVisible(false);
 								this.setIgnoreUpdate(true);
@@ -283,7 +285,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
 				}
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY1)) {
-					enemy1 = new Enemy(x, y, vbom, camera, physicsWorld){
+					levelObject = new Enemy(x, y, vbom, camera, physicsWorld){
 						@Override
 						public void onDie()
 						{
@@ -305,7 +307,6 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							}
 						}
 					};
-					levelObject = enemy1;
 				}
 				else
 				{
@@ -340,10 +341,12 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	
 	private void displayGameOverText()
 	{
-		camera.setChaseEntity(null);
-		gameOverText.setPosition(camera.getCenterX(), camera.getCenterY());
-		attachChild(gameOverText);
-		gameOverDisplayed = true;
+		if (!gameCleard) {
+			camera.setChaseEntity(null);
+			gameOverText.setPosition(camera.getCenterX(), camera.getCenterY());
+			attachChild(gameOverText);
+			gameOverDisplayed = true;
+		}
 	}
 	
 	private void createHUD()
