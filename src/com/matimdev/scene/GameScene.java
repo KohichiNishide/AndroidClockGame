@@ -46,7 +46,8 @@ import com.matimdev.extras.LevelCompleteWindow;
 import com.matimdev.extras.LevelCompleteWindow.StarsCount;
 import com.matimdev.manager.SceneManager;
 import com.matimdev.manager.SceneManager.SceneType;
-import com.matimdev.object.Enemy;
+import com.matimdev.object.EnemyOne;
+import com.matimdev.object.EnemyTwo;
 import com.matimdev.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
@@ -70,13 +71,14 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_COIN = "coin";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_PLAYER = "player";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY1 = "enemy1";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY2 = "enemy2";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK = "degitalClock";
 	
 	private Player player;
-	private Enemy enemy1;
+	private EnemyOne enemy1;
 	
 	private Text gameOverText;
 	private boolean gameOverDisplayed = false;
@@ -285,7 +287,31 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
 				}
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY1)) {
-					levelObject = new Enemy(x, y, vbom, camera, physicsWorld){
+					levelObject = new EnemyOne(x, y, vbom, camera, physicsWorld){
+						@Override
+						public void onDie()
+						{
+						}
+						
+						@Override
+						protected void onManagedUpdate(float pSecondsElapsed) 
+						{
+							super.onManagedUpdate(pSecondsElapsed);
+
+							if (player.collidesWith(this))
+							{
+								player.setVisible(false);
+								if (!gameOverDisplayed)
+								{
+									player.die();
+									displayGameOverText();
+								}
+							}
+						}
+					};
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_ENEMY2)) {
+					levelObject = new EnemyTwo(x, y, vbom, camera, physicsWorld){
 						@Override
 						public void onDie()
 						{
