@@ -324,7 +324,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		
 		scoreText = new Text(20, 420, resourcesManager.font, "Score: 0123456789", new TextOptions(HorizontalAlign.LEFT), vbom);
 		scoreText.setAnchorCenter(0, 0);	
-		scoreText.setText("Coin: 0");
+		scoreText.setText("Coin x 0");
 		gameHUD.attachChild(scoreText);
 		
 		camera.setHUD(gameHUD);
@@ -338,7 +338,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private void addToScore(int i)
 	{
 		score += i;
-		scoreText.setText("Coin: " + score);
+		scoreText.setText("Coin x " + score);
 	}
 	
 	private void createPhysics()
