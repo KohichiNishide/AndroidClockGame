@@ -72,6 +72,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_LEVEL_COMPLETE = "levelComplete";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK = "degitalClock";
 	
 	private Player player;
 	
@@ -263,6 +264,20 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					});
 					levelObject.registerUpdateHandler(iphoneTimerHandler);
 					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("iphone");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					countDownText = new Text(53, 30, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(countDownText);
+					degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					        countDownText.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
 				}
 				else
 				{
