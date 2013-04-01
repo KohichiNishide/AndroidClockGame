@@ -48,6 +48,7 @@ import com.matimdev.manager.SceneManager;
 import com.matimdev.manager.SceneManager.SceneType;
 import com.matimdev.object.EnemyOne;
 import com.matimdev.object.EnemyTwo;
+import com.matimdev.object.Kinoko;
 import com.matimdev.object.Player;
 
 public class GameScene extends BaseScene implements IOnSceneTouchListener
@@ -76,6 +77,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK = "degitalClock";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_KINOKO = "kinoko";
 	
 	private Player player;
 	private EnemyOne enemy1;
@@ -242,7 +244,15 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 							if (player.collidesWith(this))
 							{
 								gameCleard = true;
-								levelCompleteWindow.display(StarsCount.TWO, GameScene.this, camera);
+								StarsCount count;
+								if (score == 1 || score == 0) {
+									count = StarsCount.ONE;
+								} else if (score == 2) {
+									count = StarsCount.TWO;
+								} else {
+									count = StarsCount.THREE;
+								}
+								levelCompleteWindow.display(count, GameScene.this, camera);
 								this.setVisible(false);
 								this.setIgnoreUpdate(true);
 							}
@@ -330,6 +340,25 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 									player.die();
 									displayGameOverText();
 								}
+							}
+						}
+					};
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_KINOKO)) {
+					levelObject = new Kinoko(x, y, vbom, camera, physicsWorld){
+						@Override
+						public void onDie()
+						{
+						}
+						
+						@Override
+						protected void onManagedUpdate(float pSecondsElapsed) 
+						{
+							super.onManagedUpdate(pSecondsElapsed);
+
+							if (player.collidesWith(this))
+							{
+								this.setVisible(false);
 							}
 						}
 					};

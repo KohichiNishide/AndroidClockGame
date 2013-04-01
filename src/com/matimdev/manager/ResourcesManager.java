@@ -56,6 +56,7 @@ public class ResourcesManager
 	public ITextureRegion ground_region;
 	public ITextureRegion coin_region;
 	public ITiledTextureRegion player_region;
+	public ITiledTextureRegion kinoko_region;
 	public ITiledTextureRegion enemy1_region;
 	public ITiledTextureRegion enemy2_region;
 	public ITextureRegion dokan_region;
@@ -136,6 +137,7 @@ public class ResourcesManager
         player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 3, 1);
         enemy1_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "enemy1.png", 3, 1);
         enemy2_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "enemy2.png", 3, 1);
+        kinoko_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "kinoko.png", 3, 1);
         complete_window_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "levelCompleteWindow.png");
         complete_stars_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "star.png", 2, 1);
 

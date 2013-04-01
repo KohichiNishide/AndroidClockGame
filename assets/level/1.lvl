@@ -18,11 +18,11 @@
 	<entity x="1350" y="76" type="iphone"/>
 	<entity x="3000" y="76" type="degitalClock"/>
 	<entity x="1400" y="270" type="coin"/>
-	<entity x="1500" y="400" type="coin"/>
 	<entity x="1600" y="400" type="coin"/>
 	<entity x="2500" y="500" type="coin"/>
 	<entity x="4500" y="150" type="levelComplete"/>
 	<entity x="60" y="90" type="player"/>
 	<entity x="500" y="90" type="enemy1"/>
 	<entity x="4000" y="90" type="enemy2"/>
+	<entity x="4500" y="90" type="kinoko"/>
 </level>
