@@ -90,7 +90,7 @@ public class ResourcesManager
 	private void loadMenuGraphics()
 	{
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/menu/");
-        menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 800, TextureOptions.BILINEAR);
+        menuTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1000, 800, TextureOptions.BILINEAR);
         menu_background_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "menu_background.png");
         play_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "play.png");
         options_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTextureAtlas, activity, "options.png");
@@ -123,7 +123,7 @@ public class ResourcesManager
 	private void loadGameGraphics()
 	{
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/game/");
-        gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1024, 800, TextureOptions.BILINEAR);
+        gameTextureAtlas = new BuildableBitmapTextureAtlas(activity.getTextureManager(), 1100, 800, TextureOptions.BILINEAR);
         
        	platform1_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform4.png");
        	platform2_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "platform5.png");
