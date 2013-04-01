@@ -154,7 +154,7 @@ public class ResourcesManager
 	{
 		FontFactory.setAssetBasePath("font/");
 		final ITexture mainFontTexture = new BitmapTextureAtlas(activity.getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		timeFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), mainFontTexture, activity.getAssets(), "font.ttf", 17, true, Color.WHITE, 2, Color.BLACK);
+		timeFont = FontFactory.createStrokeFromAsset(activity.getFontManager(), mainFontTexture, activity.getAssets(), "font.ttf", 20, true, Color.WHITE, 2, Color.BLACK);
 		timeFont.load();
 	}
 	

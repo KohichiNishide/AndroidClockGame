@@ -262,7 +262,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.iphone_region, vbom);
 					// Get current time
 					String currentTime = getCurrentTime();
-					iphoneCountDownText = new Text(50, 20, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					iphoneCountDownText = new Text(73, 33, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
 					levelObject.attachChild(iphoneCountDownText);
 					iphoneTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
 					    public void onTimePassed(TimerHandler pTimerHandler) {
@@ -276,7 +276,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
 					// Get current time
 					String currentTime = getCurrentTime();
-					degitalClockCountDownText = new Text(53, 30, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					degitalClockCountDownText = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
 					levelObject.attachChild(degitalClockCountDownText);
 					degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
 					    public void onTimePassed(TimerHandler pTimerHandler) {

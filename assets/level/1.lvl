@@ -15,8 +15,8 @@
 	<entity x="4500" y="20" type="ground"/>
 	<entity x="300" y="90" type="dokan"/>
 	<entity x="600" y="90" type="dokan"/>
-	<entity x="1350" y="65" type="iphone"/>
-	<entity x="3000" y="65" type="degitalClock"/>
+	<entity x="1350" y="76" type="iphone"/>
+	<entity x="3000" y="76" type="degitalClock"/>
 	<entity x="1400" y="270" type="coin"/>
 	<entity x="1500" y="400" type="coin"/>
 	<entity x="1600" y="400" type="coin"/>
