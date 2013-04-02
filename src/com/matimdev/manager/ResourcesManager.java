@@ -56,6 +56,7 @@ public class ResourcesManager
 	public ITextureRegion ground_region;
 	public ITextureRegion coin_region;
 	public ITiledTextureRegion player_region;
+	public ITiledTextureRegion big_player_region;
 	public ITiledTextureRegion kinoko_region;
 	public ITiledTextureRegion enemy1_region;
 	public ITiledTextureRegion enemy2_region;
@@ -134,7 +135,8 @@ public class ResourcesManager
        	iphone_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "iphone.png");
        	degitalClock_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "degitalClock.png");
         coin_region = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameTextureAtlas, activity, "coin.png");
-        player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 3, 1);
+        player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "player.png", 5, 1);
+        big_player_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "big_player.png", 3, 1);
         enemy1_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "enemy1.png", 3, 1);
         enemy2_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "enemy2.png", 3, 1);
         kinoko_region = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(gameTextureAtlas, activity, "kinoko.png", 3, 1);

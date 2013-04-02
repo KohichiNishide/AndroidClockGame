@@ -356,9 +356,10 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 						{
 							super.onManagedUpdate(pSecondsElapsed);
 
-							if (player.collidesWith(this))
+							if (player.collidesWith(this) || this.collidesWith(player))
 							{
 								this.setVisible(false);
+								player.big(resourcesManager.big_player_region);
 							}
 						}
 					};

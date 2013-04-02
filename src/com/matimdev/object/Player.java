@@ -5,6 +5,7 @@ import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import com.badlogic.gdx.math.Vector2;
@@ -88,6 +89,13 @@ public abstract class Player extends AnimatedSprite
 	public void die() {
 		canRun = false;
 		body.setLinearVelocity(new Vector2(1, 0)); 
+	}
+	
+	public void big(ITiledTextureRegion textureRegion) {
+		//this.setCurrentTileIndex(3);
+		final long[] PLAYER_ANIMATE = new long[] { 100, 100 };
+		animate(PLAYER_ANIMATE, 3, 4, true);
+		body.setLinearVelocity(new Vector2(15, body.getLinearVelocity().y)); 
 	}
 	
 	public void increaseFootContacts()
