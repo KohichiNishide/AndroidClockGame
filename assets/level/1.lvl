@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<level width="5000" height="780">	
+<level width="5500" height="780">	
 	<entity x="1100" y="100" type="platform1"/>
 	<entity x="1200" y="200" type="platform1"/>
 	<entity x="1400" y="200" type="platform2"/>
@@ -10,19 +10,25 @@
 	<entity x="2320" y="330" type="platform3"/>
 	<entity x="0" y="20" type="ground"/>
 	<entity x="1000" y="20" type="ground"/>
-	<entity x="2500" y="20" type="ground"/>
-	<entity x="3500" y="20" type="ground"/>
+	<entity x="2600" y="20" type="ground"/>
+	<entity x="3700" y="20" type="ground"/>
 	<entity x="4500" y="20" type="ground"/>
+	<entity x="5500" y="20" type="ground"/>
 	<entity x="300" y="90" type="dokan"/>
 	<entity x="600" y="90" type="dokan"/>
 	<entity x="1350" y="76" type="iphone"/>
-	<entity x="3000" y="76" type="degitalClock"/>
+	<entity x="4500" y="76" type="degitalClock"/>
+	<entity x="4700" y="76" type="degitalClock2"/>
+	<entity x="4700" y="155" type="degitalClock3"/>
+	<entity x="4900" y="76" type="degitalClock4"/>
+	<entity x="4900" y="155" type="degitalClock5"/>
+	<entity x="4900" y="235" type="degitalClock6"/>
 	<entity x="1400" y="270" type="coin"/>
 	<entity x="1600" y="400" type="coin"/>
 	<entity x="2500" y="500" type="coin"/>
-	<entity x="4500" y="150" type="levelComplete"/>
+	<entity x="5300" y="150" type="levelComplete"/>
 	<entity x="60" y="90" type="player"/>
 	<entity x="500" y="90" type="enemy1"/>
-	<entity x="4000" y="90" type="enemy2"/>
+	<entity x="3900" y="90" type="enemy2"/>
 	<entity x="4400" y="90" type="kinoko"/>
 </level>

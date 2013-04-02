@@ -77,6 +77,11 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DOKAN = "dokan";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_IPHONE = "iphone";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK = "degitalClock";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK2 = "degitalClock2";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK3 = "degitalClock3";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK4 = "degitalClock4";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK5 = "degitalClock5";
+	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK6 = "degitalClock6";
 	private static final Object TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_KINOKO = "kinoko";
 	
 	private Player player;
@@ -89,6 +94,20 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 	private boolean firstTouch = false;
 	private Text iphoneCountDownText;
 	private Text degitalClockCountDownText;
+	private Text degitalClockCountDownText2;
+	private Text degitalClockCountDownText3;
+	private Text degitalClockCountDownText4;
+	private Text degitalClockCountDownText5;
+	private Text degitalClockCountDownText6;
+
+	private TimerHandler iphoneTimerHandler;
+	private TimerHandler degitalClockTimerHandler;
+	private TimerHandler degitalClockTimerHandler2;
+	private TimerHandler degitalClockTimerHandler3;
+	private TimerHandler degitalClockTimerHandler4;
+	private TimerHandler degitalClockTimerHandler5;
+	private TimerHandler degitalClockTimerHandler6;
+
 	
 	@Override
 	public void createScene()
@@ -144,9 +163,6 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 		}
 		return false;
 	}
-	
-	private TimerHandler iphoneTimerHandler;
-	private TimerHandler degitalClockTimerHandler;
 	
 	private void loadLevel(int levelID)
 	{
@@ -288,9 +304,79 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					String currentTime = getCurrentTime();
 					degitalClockCountDownText = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
 					levelObject.attachChild(degitalClockCountDownText);
-					degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
 					    public void onTimePassed(TimerHandler pTimerHandler) {
 					    	degitalClockCountDownText.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK2)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					degitalClockCountDownText2 = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText2);
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					    	degitalClockCountDownText2.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK3)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					degitalClockCountDownText3 = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText3);
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					    	degitalClockCountDownText3.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK4)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					degitalClockCountDownText4 = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText4);
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					    	degitalClockCountDownText4.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK5)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					degitalClockCountDownText5 = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText5);
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					    	degitalClockCountDownText5.setText(getCurrentTime());
+					    }
+					});
+					levelObject.registerUpdateHandler(degitalClockTimerHandler);
+					PhysicsFactory.createBoxBody(physicsWorld, levelObject, BodyType.StaticBody, FIXTURE_DEF).setUserData("degitalClock");
+				}
+				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_DEGITALCLOCK6)) {
+					levelObject = new Sprite(x, y, resourcesManager.degitalClock_region, vbom);
+					// Get current time
+					String currentTime = getCurrentTime();
+					degitalClockCountDownText6 = new Text(92, 52, resourcesManager.timeFont, currentTime, currentTime.length(), new TextOptions(HorizontalAlign.CENTER), vbom);
+					levelObject.attachChild(degitalClockCountDownText6);
+					TimerHandler degitalClockTimerHandler = new TimerHandler(1, true, new ITimerCallback() {
+					    public void onTimePassed(TimerHandler pTimerHandler) {
+					    	degitalClockCountDownText6.setText(getCurrentTime());
 					    }
 					});
 					levelObject.registerUpdateHandler(degitalClockTimerHandler);
