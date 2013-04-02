@@ -11,8 +11,8 @@
 	<entity x="0" y="20" type="ground"/>
 	<entity x="1000" y="20" type="ground"/>
 	<entity x="2600" y="20" type="ground"/>
-	<entity x="3700" y="20" type="ground"/>
-	<entity x="4500" y="20" type="ground"/>
+	<entity x="3600" y="20" type="ground"/>
+	<entity x="4800" y="20" type="ground"/>
 	<entity x="5500" y="20" type="ground"/>
 	<entity x="300" y="90" type="dokan"/>
 	<entity x="600" y="90" type="dokan"/>
@@ -29,6 +29,6 @@
 	<entity x="5300" y="150" type="levelComplete"/>
 	<entity x="60" y="90" type="player"/>
 	<entity x="500" y="90" type="enemy1"/>
-	<entity x="3900" y="90" type="enemy2"/>
-	<entity x="4400" y="90" type="kinoko"/>
+	<entity x="3600" y="90" type="enemy2"/>
+	<entity x="4000" y="90" type="kinoko"/>
 </level>
