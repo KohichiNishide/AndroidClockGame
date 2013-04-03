@@ -30,5 +30,5 @@
 	<entity x="60" y="90" type="player"/>
 	<entity x="500" y="90" type="enemy1"/>
 	<entity x="3600" y="90" type="enemy2"/>
-	<entity x="4000" y="90" type="kinoko"/>
+	<entity x="3700" y="90" type="kinoko"/>
 </level>

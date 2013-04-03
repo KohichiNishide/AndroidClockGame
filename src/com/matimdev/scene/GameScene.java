@@ -431,24 +431,22 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 					};
 				}
 				else if (type.equals(TAG_ENTITY_ATTRIBUTE_TYPE_VALUE_KINOKO)) {
-					levelObject = new Kinoko(x, y, vbom, camera, physicsWorld){
-						@Override
-						public void onDie()
-						{
-						}
-						
+					levelObject = new Sprite(x, y, resourcesManager.kinoko_region, vbom)
+					{
 						@Override
 						protected void onManagedUpdate(float pSecondsElapsed) 
 						{
 							super.onManagedUpdate(pSecondsElapsed);
 
-							if (player.collidesWith(this) || this.collidesWith(player))
+							if (player.collidesWith(this))
 							{
-								this.setVisible(false);
 								player.big(resourcesManager.big_player_region);
+								this.setVisible(false);
+								this.setIgnoreUpdate(true);
 							}
 						}
 					};
+					levelObject.registerEntityModifier(new LoopEntityModifier(new ScaleModifier(1, 1, 1.3f)));
 				}
 				else
 				{
