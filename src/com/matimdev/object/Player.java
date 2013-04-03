@@ -98,6 +98,13 @@ public abstract class Player extends AnimatedSprite
 		body.setLinearVelocity(new Vector2(15, body.getLinearVelocity().y)); 
 	}
 	
+	public void end() {
+		//this.setCurrentTileIndex(3);
+		final long[] PLAYER_ANIMATE = new long[] { 100, 100 };
+		animate(PLAYER_ANIMATE, 5, 6, true);
+		body.setLinearVelocity(new Vector2(15, body.getLinearVelocity().y)); 
+	}
+	
 	public void increaseFootContacts()
 	{
 		footContacts++;

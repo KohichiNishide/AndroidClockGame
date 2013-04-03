@@ -271,6 +271,7 @@ public class GameScene extends BaseScene implements IOnSceneTouchListener
 								levelCompleteWindow.display(count, GameScene.this, camera);
 								this.setVisible(false);
 								this.setIgnoreUpdate(true);
+								player.end();
 							}
 						}
 					};
